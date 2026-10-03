@@ -1,7 +1,7 @@
 # dsh-freeai-bridge — FreeAI Bridge
 
 Reklame u DSH → prihod → DeepSeek fond. Korisnik ne plaća dok fond traje.
-Podela: 85% fond (default, podesivo), 15% razvoj.
+Podela: 80% fond (default, podesivo), 20% razvoj.
 
 ## Install
 
@@ -20,7 +20,7 @@ dsh-freeai-bridge:
   provider: buzzer
   publisherId: "..."   # ili env FREEAI_PUBLISHER_ID
   apiKey: "..."        # ili env FREEAI_ADS_KEY
-  apiFundRatio: 0.85
+  apiFundRatio: 0.8
   limitUsd: 50
   period: monthly
   downgradeModel: deepseek/deepseek-chat

@@ -50,7 +50,7 @@ export function recordSpend(costUsd: number, apiFundRatio: number, limitUsd: num
   return status(apiFundRatio, limitUsd)
 }
 
-export function status(apiFundRatio = 0.85, limitUsd = 50): FundStatus {
+export function status(apiFundRatio = 0.8, limitUsd = 50): FundStatus {
   const e = readJson<{ earned: number }>(earningsPath(), { earned: 0 })
   const s = readJson<{ spent: number }>(spendPath(), { spent: 0 })
   const fundUsd = +(e.earned * apiFundRatio).toFixed(4)

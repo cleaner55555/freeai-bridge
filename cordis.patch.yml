@@ -11,7 +11,7 @@
       config:
         enabled: false
         provider: buzzer
-        apiFundRatio: 0.85
+        apiFundRatio: 0.8
         limitUsd: 50
         period: monthly
         downgradeModel: deepseek/deepseek-chat
