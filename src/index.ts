@@ -18,8 +18,8 @@ export function buildStatusLine(fundUsd: number, remainingUsd: number): string {
 export function apply(ctx: Context, config: ConfigShape): void {
   if (!config.enabled) return
   const provider = createAdProvider(config.provider, {
-    publisherId: process.env.FREEAI_PUBLISHER_ID ?? config.publisherId,
-    apiKey: process.env.FREEAI_ADS_KEY ?? config.apiKey,
+    publisherId: process.env.BUZZER_PUBLISHER_ID ?? process.env.FREEAI_PUBLISHER_ID ?? config.publisherId,
+    apiKey: process.env.BUZZER_API_KEY ?? process.env.FREEAI_ADS_KEY ?? config.apiKey,
   })
 
   ctx.tools.register(
@@ -56,7 +56,7 @@ export function apply(ctx: Context, config: ConfigShape): void {
       async execute(args) {
         const ad = await provider.getAd(args.context)
         if (!ad) return 'Sponsored: —'
-        const imp = `${Date.now()}-${Math.random().toString(36).slice(2)}`
+        const imp = ad.impressionId ?? `${Date.now()}-${Math.random().toString(36).slice(2)}`
         const { revenueUsd } = await provider.trackImpression(ad.id, imp).catch(() => ({ revenueUsd: 0 }))
         if (revenueUsd > 0) recordRevenue(revenueUsd, config.apiFundRatio)
         return `Sponsored: ${ad.title} — ${ad.body} (${ad.url})`

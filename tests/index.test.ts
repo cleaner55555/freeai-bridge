@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { buildStatusLine } from '../src/index'
+import { createBuzzerProvider } from '../src/features/ad-provider/buzzer'
 import { estimateCost, status } from '../src/features/budget-manager/index'
 
 describe('dsh-freeai-bridge', () => {
@@ -15,5 +16,13 @@ describe('dsh-freeai-bridge', () => {
     const st = status(0.85, 50)
     expect(typeof st.earnedUsd).toBe('number')
     expect(typeof st.blocked).toBe('boolean')
+  })
+
+  it('buzzer bez kljuceva vraca demo reklamu bez prihoda', async () => {
+    const p = createBuzzerProvider({ publisherId: '', apiKey: '' })
+    const ad = await p.getAd('ucim blockchain')
+    expect(ad?.id).toBe('demo_2')
+    expect(await p.trackImpression(ad!.id, 'x')).toEqual({ revenueUsd: 0 })
+    expect(await p.getEarnings()).toEqual({ totalUsd: 0 })
   })
 })

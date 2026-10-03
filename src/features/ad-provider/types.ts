@@ -4,6 +4,8 @@ export interface Ad {
   body: string
   url: string
   format: 'native' | 'text' | 'banner'
+  /** API-issued impression id — proslediti u trackImpression. Odsutan = lokalni demo. */
+  impressionId?: string
 }
 
 export interface AdProvider {
