@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "description": "FreeAI Bridge — reklame u DSH placaju DeepSeek API iz prihoda. 85% fond / 15% razvoj.",
   "type": "module",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "lib/index.mjs",
+  "types": "lib/index.d.mts",
   "files": [
     "lib",
     "cordis.patch.yml"
