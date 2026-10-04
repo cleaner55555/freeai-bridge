@@ -48,6 +48,11 @@ DSH plugin koji prikazuje reklame, prihod usmerava u DeepSeek fond. Korisnik ne 
 - Verifikacija bez pnpm wrappera: `./node_modules/.bin/tsc --noEmit`, `vitest run`, `tsdown`.
 - `timeout` ne postoji na macOS.
 
+## Boot popravke (posle sesije)
+- `package.json` main/types → `lib/index.mjs` / `lib/index.d.mts` (tsdown esm daje `.mjs`; loader nije nalazio plugin).
+- `~/.dsh/.credentials.yaml` migriran sa starog ugnježdenog formata na flat `KLJUČ: vrednost` (dsh-credentials-local traži stringove). Backup: `.credentials.yaml.bak`. Vrednosti nikad ne štampati u log.
+- Boot test: `dsh --profile web --port 18789` → HTTP 200, plugin bez grešaka.
+
 ## Sledeće
 1. Korisnik: nalog na buzzernetwork.com/publishers → Publisher ID + API Key.
 2. Ja: upis ključeva (env/config) + provera kroz `freeai-bridge_status` / `freeai-bridge_ad`.
